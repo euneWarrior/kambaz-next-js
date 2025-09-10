@@ -304,7 +304,7 @@ imperdiet sit amet eget metus.
 	to get dummy text and here for 
 	<h4>Github</h4>
 	Please &nbsp;
-	<a href="https://www.lipsum.com" id="wd-lipsum">click here</a>
+	<a href="https://github.com/euneWarrior/kambaz-next-js/tree/a1" id="wd-github">click here</a>
 	&nbsp;
 	to get dummy text<br />
 	<br />

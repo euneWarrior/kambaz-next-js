@@ -19,6 +19,9 @@ export default function Labs() {
             <li>
        <Link href="/" id="wd-kambaz-link">
          Kambaz </Link> </li>
+	<li>
+         <a href="https://github.com/euneWarrior/kambaz-next-js/tree/a1" id="wd-github">Github</a>
+       </li>
      </ul>
    </div>
 );}

@@ -1,0 +1,132 @@
+body { margin: 0;  padding: 0; }
+body * { font-family:
+         Arial, Helvetica, 
+         sans-serif; }
+@media (min-width: 768px) {
+  #wd-kambaz .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+
+#wd-cornered-grade {
+	border-radius: 50px;
+	height: 40px;
+	/*width: 50px;*/
+
+}
+
+#wd-search::placeholder {
+	padding-left: 10;
+}
+#wd-search {
+	padding-right: 100;
+}
+input[type="textarea"]{
+	padding-left: 30;
+}
+
+#wd-assignment-titles {
+	position: relative;
+	bottom: 25px;
+	font-size: 23;
+
+}
+
+#wd-assignment-date-info {
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 18px;
+	height: 300px;
+}
+
+#wd-module-count {
+	position: relative;
+	color: red;
+	font-size: 15;
+	padding-right: 10;
+	right: 30px;
+}
+
+#wd-assignment-control {
+	float: end;
+}
+
+#wd-available-until-text {
+	position: relative;
+	font-size: smaller;
+	font-size: 15;
+	right: 30px;
+}
+
+#wd-due-date-text {
+	font-size: 15;
+	position: relative;
+	left: 67px;
+	bottom: 10px;
+}
+
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+
+#wd-view-progress {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+#wd-collapse-all {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+
+
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+
+wd-dashboard-link:link {
+	color: white;
+}
+.fs-1 text-danger {
+	color: red;
+}
+.wd-neu-link {
+	color: red;
+}
+wd-kambaz-navigation:active {
+	color: red;
+	background-color: white;
+}
+/*:focus {
+	color:red;
+	background-color: white;
+} */
+
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+
+#wd-add-group {
+	background-color: rgb(230, 42, 42) !important;
+	
+}
+#wd-add-assignment {
+	float: right;
+
+	background-color: #c5c4c4 !important;
+}

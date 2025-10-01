@@ -20,7 +20,7 @@ export default function TOC() {
        <Nav.Link href="/Account/Signin" as={Link}>Kambaz</Nav.Link>
      </NavItem>
      <NavItem>
-       <Nav.Link href="https://github.com/euneWarrior/kambaz-next-js/tree/a1">My GitHub</Nav.Link>
+       <Nav.Link href="https://github.com/euneWarrior/kambaz-next-js/tree/a2">My GitHub</Nav.Link>
      </NavItem>
    </Nav>
 );}

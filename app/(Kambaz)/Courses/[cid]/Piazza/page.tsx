@@ -6,7 +6,7 @@ export default function Piazza() {
 	PIAZZA!!!
 	<h2>please party properly pairing
 		pizza proudly putting public
-		piazza (plenty P's)
+		piazza (plenty P&apos;s)
 	</h2>
      </h1>
    </div>

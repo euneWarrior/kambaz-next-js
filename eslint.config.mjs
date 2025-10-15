@@ -15,7 +15,8 @@ const eslintConfig = [
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       'react/jsx-key': 'off',
-      'prefer-const': 'off'
+      'prefer-const': 'off',
+      'react/no-children-prop': 'off'
     },
     ignores: [
       "node_modules/**",

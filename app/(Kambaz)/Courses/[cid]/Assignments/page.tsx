@@ -29,7 +29,7 @@ export default function Assignments() {
           .filter((assignment: Record<string, unknown>) => assignment.course === cid)
           .map((assignment: Record<string, unknown>) => (
 
-      <ListGroup className="wd-lessons rounded-0">
+      <ListGroup key = ""className="wd-lessons rounded-0">
         <ListGroupItem className="wd-lesson p-5 ps-1">
           <BsGripVertical className="me-2 fs-3" /> 
 	  <MdAssignment className="me-2 fs-3" />

@@ -15,7 +15,7 @@ export default async function CoursesLayout(
       <Breadcrumb course = {course}/> </h2><hr />
   <div className="d-flex">
     <div className="d-none d-md-block">
-      <CourseNavigation />
+      <CourseNavigation children = {children} params = {params}/>
     </div>
     <div className="flex-fill">
       {children}
@@ -23,4 +23,3 @@ export default async function CoursesLayout(
 </div>
 
 );}
-

@@ -50,6 +50,11 @@ input[type="textarea"]{
 	float: end;
 }
 
+#wd-assignment-titles {
+	text-decoration: none;
+	color: black;
+}
+
 #wd-available-until-text {
 	font-size: smaller;
 	/*position: relative;
@@ -122,10 +127,12 @@ wd-kambaz-navigation:active {
 
 #wd-add-group {
 	background-color: rgb(230, 42, 42) !important;
+	border-color: black;
+	border-width: 1px;
 	
 }
 #wd-add-assignment {
 	float: right;
-
+border-color: black;
 	background-color: #c5c4c4 !important;
 }

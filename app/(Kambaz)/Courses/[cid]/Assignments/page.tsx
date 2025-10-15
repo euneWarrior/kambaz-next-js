@@ -39,16 +39,25 @@ export default function Assignments() {
 		</Link> <br />
 
 		<Form.Group className="justify-content-left">
-		<Form.Label id = "wd-module-count">
+		<Form.Label  id = "wd-module-count">
 		Multiple Modules
 		</Form.Label>
+		<Form.Label class = "fw-bold" id = "wd-available-until-text">
+		&nbsp; | Not Available until  
+		</Form.Label>&nbsp;
 		<Form.Label id = "wd-available-until-text">
-		| Not Available Until May 6 at 12:00am |
-		</Form.Label>  <br />
+		{assignment.due} |
+		</Form.Label>
+		
+		 <br />
 		<AssignmentControlButtons />
-		<Form.Label id = "wd-due-date-text">
-		Due May 12 at 11:59pm  |  100 pts
+		<Form.Label class = "fw-bold" id = "wd-due-date-text">
+		Due &nbsp;
 		</Form.Label> 
+		<Form.Label id = "wd-due-date-text">
+		{assignment.due} | {assignment.points} points
+		</Form.Label> 
+		
 		</Form.Group>
 
 		

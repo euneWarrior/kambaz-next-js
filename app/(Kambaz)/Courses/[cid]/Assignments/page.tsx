@@ -10,6 +10,7 @@ import { useParams } from "next/navigation";
 import { assignments } from "../../../Database"
 export default function Assignments() {
   const { cid } = useParams();
+
 	return (
 	
     <div id="wd-assignments">
@@ -25,17 +26,17 @@ export default function Assignments() {
 	 </div>
     <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
 	{assignments
-          .filter((assignment: any) => assignment.course === cid)
-          .map((assignment: any) => (
+          .filter((assignment: Record<string, unknown>) => assignment.course === cid)
+          .map((assignment: Record<string, unknown>) => (
 
       <ListGroup className="wd-lessons rounded-0">
         <ListGroupItem className="wd-lesson p-5 ps-1">
           <BsGripVertical className="me-2 fs-3" /> 
 	  <MdAssignment className="me-2 fs-3" />
 	  
-'		<Link href = {`Assignments/${assignment._id}`} id = "wd-assignment-titles">
+		<Link href = {`Assignments/${assignment._id}`} id = "wd-assignment-titles">
 		{assignment.title}
-		</Link> <br />'
+		</Link> <br />
 
 		<Form.Group className="justify-content-left">
 		<Form.Label id = "wd-module-count">

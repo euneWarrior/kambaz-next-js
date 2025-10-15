@@ -26,8 +26,8 @@ export default function Assignments() {
 	 </div>
     <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
 	{assignments
-          .filter((assignment: Record<string, unknown>) => assignment.course === cid)
-          .map((assignment: Record<string, unknown>) => (
+          .filter((assignment: any) => assignment.course === cid)
+          .map((assignment: any) => (
 
       <ListGroup key = ""className="wd-lessons rounded-0">
         <ListGroupItem className="wd-lesson p-5 ps-1">

@@ -14,7 +14,7 @@ export default function AssignmentTopButtons() {
 	
      <Button  size = "lg" className="position-relative float-right" id="wd-add-assignment">
        <FaPlus />Group
-     </Button>
+     </Button> 
 
 	 <Button className = "float-right" style={{backgroundColor: '#f0f0f0'}} 
 	 size = "lg" id="wd-add-group">

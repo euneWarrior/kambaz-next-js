@@ -1,26 +1,29 @@
-'use client'
+"use client"
+import { useParams } from "next/navigation";
+import * as db from "../../../../Database";
 import {FormCheck, FormSelect, FormControl, Form, Col, Row, Button} from "react-bootstrap";
 export default function AssignmentEditor() {
+	  const { aid } = useParams();
+  const assignments = db.assignments;
+    const assignment = assignments.find((assignment) => assignment._id === aid);
   return (<div id="wd-assignments-editor">
   <Form>
    <Form.Group for = "wd-name" as={Row} className="mb-3">
-     <Form.Label for = "wd-name"> Assignment Name </Form.Label>
+     <Form.Label htmlFor = "wd-name"> Assignment Name </Form.Label>
      <Col sm={8}>
        <Form.Control type="name" placeholder="A1- ENV + HTML" 
-       defaultValue = "A1"/>
+       defaultValue = {assignment?.title}/>
      </Col>
    </Form.Group>
    <Col lg = {10}>
-      <FormControl as="textarea" rows={15} defaultValue="
-   This assignment is available online.
-   Please submit your link."/> <br />
+      <FormControl as="textarea" rows={15} defaultValue={assignment?.description}/> <br />
    </Col>
 
 	   <Form.Group as={Row} className="text-end  mb-4 flex-sm-row position-relative d-flex justify-content-center">
      <Form.Label for = "wd-points" column sm={3} className = "float-end justify-content-end direction-rtl">
 	 Points </Form.Label>
      <Col sm={4}>
-       <Form.Control id = "wd-points" type="number" defaultValue="100" />
+       <Form.Control id = "wd-points" type="number" defaultValue={assignment?.points} />
      </Col>
    </Form.Group>
 
@@ -78,7 +81,7 @@ export default function AssignmentEditor() {
 	<Form.Group  className = "mb-4 position-relative d-flex justify-content-center">
 	<Form.Label for = "wd-due-date" column sm={2}> Due </Form.Label> <br />
 	<Col sm={4}>
-	<Form.Control id = "wd-due-date" type = "date" placeholder="2024-05-13" />
+	<Form.Control id = "wd-due-date" type = "date" defaultValue={assignment?.due_dateform} />
 	</Col>
 	</Form.Group>
 
@@ -88,11 +91,11 @@ export default function AssignmentEditor() {
 	</Form.Group>
 	<Form.Group  className = "mb-2 position-relative d-flex justify-content-center">
 		<Col sm={3}  className = "float pe-2">
-			<Form.Control  className = "float" id = "wd-available-from" type = "date" placeholder="2024-05-06" />
+			<Form.Control  className = "float" id = "wd-available-from" type = "date" defaultValue={assignment?.available_dateform} />
 
 		</Col>
 				<Col sm={3}>
-					<Form.Control className = "float" id = "wd-available-until" type = "date" placeholder="2024-05-20" />
+					<Form.Control className = "float" id = "wd-available-until" type = "date" defaultValue={assignment?.until_dateform} />
 				</Col>
 
 	</Form.Group>

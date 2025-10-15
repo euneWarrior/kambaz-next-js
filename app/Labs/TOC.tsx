@@ -1,26 +1,27 @@
-'use client'
+"use client";
+import { Nav, NavItem, NavLink } from "react-bootstrap";
 import Link from "next/link";
-import {Nav, NavItem, NavLink} from "react-bootstrap";
+import { usePathname } from "next/navigation";
 export default function TOC() {
+ const pathname = usePathname();
  return (
    <Nav variant="pills">
      <NavItem>
-       <Nav.Link href="/Labs" as={Link}>Labs</Nav.Link>
-     </NavItem>
+       <NavLink href="/Labs" as={Link} className={`nav-link ${pathname.endsWith("Labs") ? "active" : ""}`}>
+         Labs </NavLink> </NavItem>
      <NavItem>
-       <Nav.Link href="/Labs/Lab1" as={Link}>Lab 1</Nav.Link>
-     </NavItem>
+       <NavLink href="/Labs/Lab1" as={Link} className={`nav-link ${pathname.endsWith("Lab1") ? "active" : ""}`}>
+         Lab 1 </NavLink> </NavItem>
      <NavItem>
-       <Nav.Link href="/Labs/Lab2" as={Link} active>Lab 2</Nav.Link>
-     </NavItem>
+       <NavLink href="/Labs/Lab2" as={Link} className={`nav-link ${pathname.endsWith("Lab2") ? "active" : ""}`}>
+         Lab 2 </NavLink> </NavItem>
      <NavItem>
-       <Nav.Link href="/Labs/Lab3" as={Link}>Lab 3</Nav.Link>
-     </NavItem>
+       <NavLink href="/Labs/Lab3" as={Link} className={`nav-link ${pathname.endsWith("Lab3") ? "active" : ""}`}>
+         Lab 3 </NavLink> </NavItem>
      <NavItem>
-       <Nav.Link href="/Account/Signin" as={Link}>Kambaz</Nav.Link>
-     </NavItem>
+       <NavLink href="/" as={Link}>
+         Kambaz </NavLink> </NavItem>
      <NavItem>
-       <Nav.Link href="https://github.com/euneWarrior/kambaz-next-js/tree/a2">My GitHub</Nav.Link>
-     </NavItem>
+       <NavLink href="https://github.com/euneWarrior/kambaz-next-js/tree/a3">My GitHub</NavLink></NavItem>
    </Nav>
-);}
+ );}

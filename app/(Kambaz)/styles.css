@@ -40,11 +40,10 @@ input[type="textarea"]{
 }
 
 #wd-module-count {
-	position: relative;
 	color: red;
 	font-size: 15;
-	padding-right: 10;
-	right: 30px;
+	/* padding-right: 10;
+	right: 30px; */
 }
 
 #wd-assignment-control {
@@ -52,17 +51,17 @@ input[type="textarea"]{
 }
 
 #wd-available-until-text {
-	position: relative;
 	font-size: smaller;
+	/*position: relative;
 	font-size: 15;
-	right: 30px;
+	right: 30px;*/
 }
 
 #wd-due-date-text {
 	font-size: 15;
-	position: relative;
+	/*position: relative;
 	left: 67px;
-	bottom: 10px;
+	bottom: 10px;*/
 }
 
 .btn-secondary {

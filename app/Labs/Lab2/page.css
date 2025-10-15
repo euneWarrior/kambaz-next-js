@@ -17,6 +17,13 @@ p#wd-id-selector-2 {
    background-color: red;
    color: white; 
 }
+
+.box {
+  border: 2px solid red;
+  padding: 10px;
+}
+
+
 .wd-selector-2 > .wd-selector-3 > .wd-selector-4 {
    background-color: yellow;
    color: blue;  

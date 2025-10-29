@@ -38,7 +38,7 @@ export default function Dashboard() {
       <FormControl value={course.description} rows={3}
       onChange={(e) => setCourse({ ...course, description: e.target.value }) } />
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
-      <div id="wd-dashboard-courses">
+      <div id="wd-dashboard-courses"> 
         <Row xs={1} md={5} className="g-4">
           {courses    .filter((course) =>
       enrollments.some(

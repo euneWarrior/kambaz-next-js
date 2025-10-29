@@ -12,4 +12,8 @@ const store = configureStore({
 	 todosReducer, }
 
   });
+  // Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: { add: AddState }
+export type AppDispatch = typeof store.dispatch;
 export default store;

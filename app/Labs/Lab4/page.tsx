@@ -1,5 +1,5 @@
 "use client"
-
+export const dynamic = 'force-dynamic';
 import ArrayStateVariable from "./ArrayStateVariable";
 import BooleanStateVariables from "./BooleanStateVariables";
 import ClickEvent from "./ClickEvent"

@@ -1,29 +1,93 @@
 "use client"
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import * as db from "../../../../Database";
+import { useDispatch } from "react-redux";
 import {FormCheck, FormSelect, FormControl, Form, Col, Row, Button} from "react-bootstrap";
-export default function AssignmentEditor() {
-	  const { aid } = useParams();
+import { addAssignment, updateAssignment } from "../reducer";
+import { assignments } from "../../../../Database";
+import { useState } from "react";
+import store from "@/app/(Kambaz)/store";
+
+function convertDate(date : string) {
+	if (date === undefined) { console.log("oops"); return ""; }
+	console.log(date);
+	const year = date.at(0) + date.at(1) + date.at(2) + date.at(3);
+	const month = getMonth(date.at(5) + date.at(6));
+	const day = (date.at(8) === "0" ? "" : date.at(8)) + "" + date.at(9) 
+	+ "th";
+	return month + " " + day + ", "+ year + ", 11:59 pm";
+}
+
+function getMonth(month: string) {
+	switch (month) {
+		case "01":
+			return "January";
+		case "02":
+			return "Feburary";
+		case "03":
+			return "March";
+		case "04":
+			return "April";
+		case "05":
+			return "May";
+		case "06":
+			return "June";
+		case "07":
+			return "July";
+		case "08":
+			return "August";
+		case "09":
+			return "September";
+		case "10":
+			return "October";
+		case "11":
+			return "November";
+		case "12":
+			return "December";
+		default:
+			return "";
+		
+		
+	}
+}
+
+export default function AssignmentEditor(
+) {
+	const dispatch = useDispatch();
+	  const { cid, aid } = useParams();
   const assignments = db.assignments;
     const assignment = assignments.find((assignment) => assignment._id === aid);
+    const isNew = assignment === undefined ? true : false;
+	  const [assignName, setAssignName] = useState(assignment?.title);
+	  const [descript, setDescription] = useState(assignment?.description);
+	  const [tempPoints, setPoints] = useState(assignment?.points);
+	  const [due, setDue] = useState(assignment?.due_dateform);
+	  const [avail, setAvail] = useState(assignment?.available_dateform
+	  );
+	  const _id = aid;
+	  const [unt, setUnt] = useState(assignment?.until_dateform);
+	
   return (<div id="wd-assignments-editor">
   <Form>
    <Form.Group for = "wd-name" as={Row} className="mb-3">
      <Form.Label htmlFor = "wd-name"> Assignment Name </Form.Label>
      <Col sm={8}>
        <Form.Control type="name" placeholder="A1- ENV + HTML" 
-       defaultValue = {assignment?.title}/>
+       defaultValue = {assignment?.title}  onChange={(e) => setAssignName(e.target.value)}/>
      </Col>
    </Form.Group>
    <Col lg = {10}>
-      <FormControl as="textarea" rows={15} defaultValue={assignment?.description}/> <br />
+      <FormControl as="textarea" rows={15} onChange={(e) => setDescription(e.target.value)}
+      defaultValue={assignment?.description}/> <br />
    </Col>
 
 	   <Form.Group as={Row} className="text-end  mb-4 flex-sm-row position-relative d-flex justify-content-center">
      <Form.Label for = "wd-points" column sm={3} className = "float-end justify-content-end direction-rtl">
 	 Points </Form.Label>
      <Col sm={4}>
-       <Form.Control id = "wd-points" type="number" defaultValue={assignment?.points} />
+       <Form.Control id = "wd-points" type="number" defaultValue={assignment?.points}
+       onChange={(e) => setPoints(e.target.value)}
+       />
      </Col>
    </Form.Group>
 
@@ -81,7 +145,8 @@ export default function AssignmentEditor() {
 	<Form.Group  className = "mb-4 position-relative d-flex justify-content-center">
 	<Form.Label for = "wd-due-date" column sm={2}> Due </Form.Label> <br />
 	<Col sm={4}>
-	<Form.Control id = "wd-due-date" type = "date" defaultValue={assignment?.due_dateform} />
+	<Form.Control id = "wd-due-date" type = "date" defaultValue={assignment?.due_dateform}
+	onChange={(e) => setDue(e.target.value)} />
 	</Col>
 	</Form.Group>
 
@@ -91,11 +156,15 @@ export default function AssignmentEditor() {
 	</Form.Group>
 	<Form.Group  className = "mb-2 position-relative d-flex justify-content-center">
 		<Col sm={3}  className = "float pe-2">
-			<Form.Control  className = "float" id = "wd-available-from" type = "date" defaultValue={assignment?.available_dateform} />
+			<Form.Control  className = "float" id = "wd-available-from" type = "date" 
+			onChange={(e) => setAvail(e.target.value)}
+			defaultValue={assignment?.available_dateform} />
 
 		</Col>
 				<Col sm={3}>
-					<Form.Control className = "float" id = "wd-available-until" type = "date" defaultValue={assignment?.until_dateform} />
+					<Form.Control className = "float" id = "wd-available-until" type = "date" 
+					onChange={(e) => setUnt(e.target.value)}
+					defaultValue={assignment?.until_dateform} />
 				</Col>
 
 	</Form.Group>
@@ -105,6 +174,27 @@ export default function AssignmentEditor() {
 </div>
 
 	</Form.Group>
+	<Form.Group className = "text-end">
+	    <Button variant="secondary" onClick={()=>{redirect(`/Courses/${cid}/Assignments`)}}> Cancel </Button>
+    <Button variant="danger"
+     onClick={() => { if (isNew) {console.log(_id);
+	console.log(assignName);
+	dispatch(addAssignment({_id: aid, title: assignName,
+		description: descript,
+		points: tempPoints, course: cid, due: convertDate(due), available_dateform: avail, until_dateform: unt,
+		available: convertDate(avail), until: convertDate(unt), due_dateform: due}))
+
+	redirect(`/Courses/${cid}/Assignments`)
+     } else {
+	dispatch(updateAssignment({_id: aid, title: assignName,
+		description: descript,
+		points: tempPoints, course: cid, due_dateform: due, available_dateform: avail, until_dateform: unt,
+	due: convertDate(due), available: convertDate(avail), until: convertDate(unt) }));
+	redirect(`/Courses/${cid}/Assignments`)
+     }
+     }} > Add Module </Button>
+	</Form.Group>
+
   </Form>
 </div>
 

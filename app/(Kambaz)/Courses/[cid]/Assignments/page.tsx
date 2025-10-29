@@ -8,15 +8,16 @@ import AssignmentButtons from "./AssignmentButtons";
 import AssignmentTopButtons from "./AssignmentTopButtons";
 import { useParams } from "next/navigation";
 import { assignments } from "../../../Database"
+import { useSelector } from "react-redux";
 export default function Assignments() {
   const { cid } = useParams();
-
+const { assignments } = useSelector((state: any) => state.assignmentsReducer);
 	return (
 	
     <div id="wd-assignments">
 
-<AssignmentTopButtons />
-<br />
+<AssignmentTopButtons id = {cid}/>
+<br /> 
   <ListGroup className="rounded-0" id="wd-assignments">
 	      <div className="wd-title p-3 ps-2 bg-secondary"> 
         <BsGripVertical className="me-2 fs-3" /> Assignments <AssignmentButtons />
@@ -46,11 +47,11 @@ export default function Assignments() {
 		&nbsp; | Not Available until  
 		</Form.Label>&nbsp;
 		<Form.Label id = "wd-available-until-text">
-		{assignment.due} |
+		{assignment.until} |
 		</Form.Label>
 		
 		 <br />
-		<AssignmentControlButtons />
+		<AssignmentControlButtons assignmentId= {assignment._id}/>
 		<Form.Label class = "fw-bold" id = "wd-due-date-text">
 		Due &nbsp;
 		</Form.Label> 

@@ -73,7 +73,7 @@ export default function AssignmentEditor(
      <Form.Label htmlFor = "wd-name"> Assignment Name </Form.Label>
      <Col sm={8}>
        <Form.Control type="name" placeholder="A1- ENV + HTML" 
-       defaultValue = {assignment?.title}  onChange={(e) => setAssignName(e.target.value)}/>
+       defaultValue = {assignName}  onChange={(e) => setAssignName(e.target.value)}/>
      </Col>
    </Form.Group>
    <Col lg = {10}>
@@ -85,7 +85,7 @@ export default function AssignmentEditor(
      <Form.Label for = "wd-points" column sm={3} className = "float-end justify-content-end direction-rtl">
 	 Points </Form.Label>
      <Col sm={4}>
-       <Form.Control id = "wd-points" type="number" defaultValue={assignment?.points}
+       <Form.Control id = "wd-points" type="number" defaultValue={tempPoints}
        onChange={(e) => setPoints(e.target.value)}
        />
      </Col>

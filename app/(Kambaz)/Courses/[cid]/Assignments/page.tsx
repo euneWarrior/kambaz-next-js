@@ -47,7 +47,7 @@ const { assignments } = useSelector((state: any) => state.assignmentsReducer);
 		&nbsp; | Not Available until  
 		</Form.Label>&nbsp;
 		<Form.Label id = "wd-available-until-text">
-		{assignment.until} |
+		{assignment.available} |
 		</Form.Label>
 		
 		 <br />

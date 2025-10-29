@@ -6,10 +6,14 @@ import HelloRedux from "./HelloRedux/page";
 import TodoList from "./todos/TodoList";
 import store from "../store/page";
 
-export default function ReduxExamples() {
+export default function ReduxExamples({
+  children,
+}: {
+  children: React.ReactNode;
+}){
   return(
     <div>
-	<ReduxProvider children = {store}>
+	<ReduxProvider children = {HelloRedux}>
       <h2>Redux Examples</h2>
       <HelloRedux />
       <CounterRedux />

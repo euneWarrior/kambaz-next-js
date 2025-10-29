@@ -16,7 +16,6 @@ const eslintConfig = [
       '@typescript-eslint/no-explicit-any': 'off',
       'react/jsx-key': 'off',
       'prefer-const': 'off',
-      "Type-error": 'off',
       'react/no-children-prop': 'off'
     },
     ignores: [

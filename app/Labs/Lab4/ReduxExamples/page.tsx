@@ -4,7 +4,7 @@ import AddRedux from "./AddRedux/page";
 import CounterRedux from "./CounterRedux/page";
 import HelloRedux from "./HelloRedux/page";
 import TodoList from "./todos/TodoList";
-import store from "../store/page";
+import store from "../store";
 
 export default function ReduxExamples(){
   return(

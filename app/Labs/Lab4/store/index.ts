@@ -5,7 +5,10 @@ import addReducer from "../ReduxExamples/AddRedux/addReducer";
 import todosReducer from "../ReduxExamples/todos/todosReducer";
 
 const store = configureStore({
-  reducer: { helloReducer, addReducer, counterReducer, todosReducer, },
+  reducer: { helloReducer,
+	 addReducer, 
+	 counterReducer, 
+	 todosReducer, },
 
   });
 export default store;

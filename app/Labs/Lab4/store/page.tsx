@@ -6,8 +6,8 @@ import todosReducer from "../ReduxExamples/todos/todosReducer";
 const store = configureStore({
   reducer: {
     helloReducer,
-    counterReducer,
     addReducer,
+    counterReducer,
     todosReducer,
   },
 });

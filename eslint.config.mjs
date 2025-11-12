@@ -14,6 +14,7 @@ const eslintConfig = [
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      '@next/next/no-assign-module-variable': 'off',
       'react/jsx-key': 'off',
       'prefer-const': 'off',
       'react/no-children-prop': 'off'

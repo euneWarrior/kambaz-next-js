@@ -1,5 +1,4 @@
 import { Modal, FormControl, Button } from "react-bootstrap";
-import { deleteAssignment } from "./reducer";
 export default function DeleteAssignment({ show, handleClose, dialogTitle, assignmentId, deleteAssignment}: {
  show: boolean; handleClose: () => void; dialogTitle: string; assignmentId: string;
   deleteAssignment: (name: string) => void; }) {

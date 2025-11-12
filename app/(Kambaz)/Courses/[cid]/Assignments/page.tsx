@@ -7,11 +7,23 @@ import AssignmentControlButtons from "../Assignments/AssignmentControlButtons";
 import AssignmentButtons from "./AssignmentButtons";
 import AssignmentTopButtons from "./AssignmentTopButtons";
 import { useParams } from "next/navigation";
-import { assignments } from "../../../Database"
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as client from "../../client";
+import { setAssignments } from "./reducer";
 export default function Assignments() {
   const { cid } = useParams();
+  const dispatch = useDispatch();
 const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    console.log(assignments);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
 	return (
 	
     <div id="wd-assignments">
@@ -27,7 +39,6 @@ const { assignments } = useSelector((state: any) => state.assignmentsReducer);
 	 </div>
     <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
 	{assignments
-          .filter((assignment: any) => assignment.course === cid)
           .map((assignment: any) => (
 
       <ListGroup key = ""className="wd-lessons rounded-0">

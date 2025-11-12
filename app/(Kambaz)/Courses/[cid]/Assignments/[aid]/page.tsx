@@ -1,12 +1,10 @@
 "use client"
 import { redirect, useParams } from "next/navigation";
-import * as db from "../../../../Database";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {FormCheck, FormSelect, FormControl, Form, Col, Row, Button} from "react-bootstrap";
-import { addAssignment, updateAssignment } from "../reducer";
-import { assignments } from "../../../../Database";
-import { useState } from "react";
-import store from "@/app/(Kambaz)/store";
+import { addAssignment, setAssignments, updateAssignment } from "../reducer";
+import * as client from "../../../client";
+import { useEffect, useState } from "react";
 
 function convertDate(date : string) {
 	if (date === undefined) { console.log("oops"); return ""; }
@@ -53,9 +51,19 @@ function getMonth(month: string) {
 
 export default function AssignmentEditor(
 ) {
+
 	const dispatch = useDispatch();
 	  const { cid, aid } = useParams();
-  const assignments = db.assignments;
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    console.log(assignments);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+  
     const assignment = assignments.find((assignment) => assignment._id === aid);
     const isNew = assignment === undefined ? true : false;
 	  const [assignName, setAssignName] = useState(assignment?.title);
@@ -64,9 +72,27 @@ export default function AssignmentEditor(
 	  const [due, setDue] = useState(assignment?.due_dateform);
 	  const [avail, setAvail] = useState(assignment?.available_dateform
 	  );
-	  const _id = aid;
 	  const [unt, setUnt] = useState(assignment?.until_dateform);
 	
+  const onUpdateAssignment = async (assig: any) => {
+    await client.updateAssignment(assig);
+    const newAssign = assignments.map((m: any) => m._id === assig._id ? assig : m );
+    dispatch(updateAssignment(newAssign));
+  };
+
+  	    const onCreateAssignmentForCourse = async () => {
+	    if (!cid) {
+		return;}
+	    const newAssignment = {_id: aid, title: assignName,
+		description: descript,
+		points: tempPoints, course: cid, due: convertDate(due), available_dateform: avail, until_dateform: unt,
+		available: convertDate(avail), until: convertDate(unt), due_dateform: due
+	      };
+	    const assignment = await client.createAssignmentForCourse(cid, newAssignment);
+	    dispatch(setAssignments([...assignments, assignment]));
+	  };
+
+
   return (<div id="wd-assignments-editor">
   <Form>
    <Form.Group for = "wd-name" as={Row} className="mb-3">
@@ -177,19 +203,14 @@ export default function AssignmentEditor(
 	<Form.Group className = "text-end">
 	    <Button variant="secondary" onClick={()=>{redirect(`/Courses/${cid}/Assignments`)}}> Cancel </Button>
     <Button variant="danger"
-     onClick={() => { if (isNew) {console.log(_id);
-	console.log(assignName);
-	dispatch(addAssignment({_id: aid, title: assignName,
-		description: descript,
-		points: tempPoints, course: cid, due: convertDate(due), available_dateform: avail, until_dateform: unt,
-		available: convertDate(avail), until: convertDate(unt), due_dateform: due}))
-
+     onClick={() => { if (isNew) {
+	onCreateAssignmentForCourse();
 	redirect(`/Courses/${cid}/Assignments`)
      } else {
-	dispatch(updateAssignment({_id: aid, title: assignName,
+	onUpdateAssignment({_id: aid, title: assignName,
 		description: descript,
 		points: tempPoints, course: cid, due_dateform: due, available_dateform: avail, until_dateform: unt,
-	due: convertDate(due), available: convertDate(avail), until: convertDate(unt) }));
+	due: convertDate(due), available: convertDate(avail), until: convertDate(unt) });
 	redirect(`/Courses/${cid}/Assignments`)
      }
      }} > Add Module </Button>

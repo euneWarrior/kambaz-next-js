@@ -19,6 +19,8 @@ export default function Labs() {
         <li>
          <Link href="/Labs/Lab4" id="wd-lab3-link">
            Lab 4: States </Link>
+	<Link href="/Labs/Lab5" id="wd-lab3-link">
+           Lab 5: Node </Link>
        </li>
             <li>
        <Link href="/" id="wd-kambaz-link">

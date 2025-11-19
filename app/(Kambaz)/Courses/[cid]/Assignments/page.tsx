@@ -12,11 +12,12 @@ import { useSelector } from "react-redux";
 export default function Assignments() {
   const { cid } = useParams();
 const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
 	return (
 	
     <div id="wd-assignments">
-
-<AssignmentTopButtons id = {cid}/>
+{currentUser?.role == "FACULTY" && (
+<AssignmentTopButtons id = {cid}/>) }
 <br /> 
   <ListGroup className="rounded-0" id="wd-assignments">
 	      <div className="wd-title p-3 ps-2 bg-secondary"> 
@@ -34,10 +35,12 @@ const { assignments } = useSelector((state: any) => state.assignmentsReducer);
         <ListGroupItem className="wd-lesson p-5 ps-1">
           <BsGripVertical className="me-2 fs-3" /> 
 	  <MdAssignment className="me-2 fs-3" />
-	  
+	  {currentUser?.role == "FACULTY" && (
 		<Link href = {`Assignments/${assignment._id}`} id = "wd-assignment-titles">
 		{assignment.title}
-		</Link> <br />
+		</Link>)}
+		{currentUser?.role != "FACULTY" && assignment.title}
+		 <br /> 
 
 		<Form.Group className="justify-content-left">
 		<Form.Label  id = "wd-module-count">
@@ -51,7 +54,8 @@ const { assignments } = useSelector((state: any) => state.assignmentsReducer);
 		</Form.Label>
 		
 		 <br />
-		<AssignmentControlButtons assignmentId= {assignment._id}/>
+		 {currentUser?.role == "FACULTY" &&
+		(<AssignmentControlButtons assignmentId= {assignment._id}/>)}
 		<Form.Label class = "fw-bold" id = "wd-due-date-text">
 		Due &nbsp;
 		</Form.Label> 

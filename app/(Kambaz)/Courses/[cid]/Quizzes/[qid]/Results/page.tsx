@@ -143,7 +143,7 @@ function checkCorrect(answer: any, question: any) {
 }
 
 function evaluateTotal(attempt, questions) {
-	var pnts = 0;
+	let pnts = 0;
 	questions.map((question) => {
                     const studentAnswer = attempt.answers.find(a => a.questionId === question._id);
                     const isCorrect = checkCorrect(studentAnswer.selectedAnswer, question)

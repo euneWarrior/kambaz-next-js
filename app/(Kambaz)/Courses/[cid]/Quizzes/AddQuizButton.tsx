@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa6";
 import { MdSearch } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import { redirect } from "next/navigation";
-export default function AssignmentTopButtons({id} : {id: string}) {
+export default function AddQuizButton({id} : {id: string}) {
 const new_id = uuidv4();
 
  return (
@@ -16,15 +16,10 @@ const new_id = uuidv4();
 
 	</Col>
 
-	
-     <Button  size = "lg" className="position-relative float-right" id="wd-add-assignment">
-       <FaPlus />Group
-     </Button> 
-
-	 <Button onClick={() => {redirect(`/Courses/${id}/Assignments/${new_id}`)}} className = "float-right" style={{backgroundColor: '#f0f0f0'}} 
+	 <Button onClick={() => {redirect(`/Courses/${id}/Quizzes/${new_id}`)}} className = "float-right" style={{backgroundColor: '#f0f0f0'}} 
 	 size = "lg" id="wd-add-group">
 		<FaPlus className="align-mid"/>
-       Assignment
+       Quiz
      </Button>
 
 

@@ -4,7 +4,8 @@ const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
 const USERS_API = `${HTTP_SERVER}/api/users`;
 const COURSES_API = `${HTTP_SERVER}/api/courses`;
 const MODULES_API = `${HTTP_SERVER}/api/modules`;
-const ASSIGNMENTS_API = `${HTTP_SERVER}/api/assignments`
+const ASSIGNMENTS_API = `${HTTP_SERVER}/api/assignments`;
+const QUIZZES_API = `${HTTP_SERVER}/api/quizzes`
 export const deleteModule = async (moduleId: string) => {
  const response = await axios.delete(`${MODULES_API}/${moduleId}`);
  return response.data;
@@ -29,6 +30,45 @@ export const updateModule = async (module: any) => {
 export const findUsersForCourse = async (courseId: string) => {
  const response = await axios.get(`${COURSES_API}/${courseId}/users`);
  return response.data;
+};
+
+// Quiz
+
+export const deleteQuiz = async (quizID: string) => {
+ const response = await axios.delete(`${QUIZZES_API}/${quizID}`);
+ return response.data;
+};
+export const createQuizForCourse = async (courseId: string, quiz: any) => {
+  const response = await axios.post(
+    `${COURSES_API}/${courseId}/quizzes`,
+    quiz
+  );
+  return response.data;
+};
+export const findQuizzesForCourse = async (courseId: string) => {
+	console.log(`${COURSES_API}/${courseId}/quizzes`);
+  const response = await axios.get(`${COURSES_API}/${courseId}/quizzes`);
+  return response.data;
+};
+export const updateQuiz = async (quiz: any) => {
+  const { data } = await axios.put(`${QUIZZES_API}/${quiz._id}`, quiz);
+  return data;
+};
+
+//attempts
+
+export const saveQuizAttempt = async (quizId: string, studentAnswers: any[], courseId: string, userId: string) => {
+    const response = await axios.post(`${COURSES_API}/${courseId}/quizzes/${quizId}/${userId}`, {
+        answers: studentAnswers,
+        userId: userId,
+	quizId: quizId
+    });
+    return response.data;
+};
+
+export const getLatestQuizAttempt = async (courseId: string, quizId: string, userId: string) => {
+    const response = await axios.get(`${COURSES_API}/${courseId}/quizzes/${quizId}/${userId}`);
+    return response.data;
 };
 
 // assignments

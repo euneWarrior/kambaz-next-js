@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewCourse, deleteCourse, updateCourse, setCourses, setAllCourses } from "../Courses/reducer";
 import * as client from "../Courses/client";
-import * as courseList from "../Courses/reducer";
-import { ClientPageRoot } from "next/dist/client/components/client-page";
 export default function Dashboard() {
  const [course, setCourse] = useState<any>({
     _id: "0", name: "New Course", number: "New Number",

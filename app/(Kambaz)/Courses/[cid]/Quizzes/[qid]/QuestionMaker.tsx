@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Col, Row, FormControl, FormCheck } from 'react-bootstrap';
 import { FaTrash, FaPencilAlt, FaPlus } from 'react-icons/fa';
 import { v4 as uuidv4 } from "uuid";
-    //id: string;
-    //text: string;
-    //isCorrect: boolean; 
+
 
     
 const MultipleChoiceEditor = ({ question, onUpdate }: { question: any, onUpdate: (q: any) => void }) => {
@@ -302,7 +300,6 @@ const QuizQuestionEditor = ({ question, onUpdate, onDelete }: { question: any, o
             </div>
         );
     } else {
-        // Preview Mode
         return (
             <div className="p-3 mb-3 border d-flex justify-content-between align-items-center">
                 <span>{question.title}</span>

@@ -20,7 +20,7 @@ const QuestionRenderer = ({ question, answer, onChange, questionNumber }) => {
                                 type="radio"
                                 id={`q-${question._id}-choice-${"True"}`}
                                 label={"True"}
-                                name={`question-${question._id}`} // Groups radios together
+                                name={`question-${question._id}`}
                                 checked={answer === 'True'} 
                                 onChange={() => onChange(question._id, 'True')}
                             />
@@ -29,7 +29,7 @@ const QuestionRenderer = ({ question, answer, onChange, questionNumber }) => {
                                 type="radio"
                                 id={`q-${question._id}-choice-${"False"}`}
                                 label={"False"}
-                                name={`question-${question._id}`} // Groups radios together
+                                name={`question-${question._id}`}
                                 checked={answer === 'False'} 
                                 onChange={() => onChange(question._id, 'False')}
                             />
@@ -50,7 +50,7 @@ const QuestionRenderer = ({ question, answer, onChange, questionNumber }) => {
                                 type="radio"
                                 id={`q-${question._id}-choice-${choice.id}`}
                                 label={choice.text}
-                                name={`question-${question._id}`} // Groups radios together
+                                name={`question-${question._id}`}
                                 checked={answer === choice.text} 
                                 onChange={() => onChange(question._id, choice.text)}
                             />

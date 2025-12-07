@@ -59,6 +59,3 @@ const [show, setShow] = useState(false);
 		
 
     </div> );}
-
-    //<DeleteAssignment show={show} handleClose={handleClose} dialogTitle="Delete Assignment?"
-    //   assignmentId={assignmentId} deleteAssignment={onRemoveAssignment}/>

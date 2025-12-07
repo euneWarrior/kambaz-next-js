@@ -5,28 +5,6 @@ import { useParams } from 'next/navigation';
 import { Card, Alert, ListGroup, Badge } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuizzes } from '../../reducer';
-/*
-// Assuming simplified schema from previous answer
-interface StudentAnswer {
-    questionId: string;
-    selectedAnswer: string;
-    isCorrect?: boolean; // May be added by backend scoring
-    pointsAwarded?: number;
-}
-
-interface Attempt {
-    _id: string;
-    totalScore: number;
-    answers: StudentAnswer[];
-    // ... other fields like userId, quizId
-}
-
-interface Question {
-    _id: string;
-    points: number;
-    // ... other question details needed for comparison (e.g., correct answer field if not using isCorrect in attempt)
-} */
-
 
 export default function QuizResultPage() {
     const {cid, qid} = useParams();
@@ -43,8 +21,6 @@ export default function QuizResultPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-		console.log(qid);
-                // Fetch the latest attempt for this user (you need a backend route for this)
                 const latestAttempt = await client.getLatestQuizAttempt(cid, qid, currentUserId); 
                 setAttempt(latestAttempt);
 
@@ -66,10 +42,9 @@ export default function QuizResultPage() {
 	const fetchQuizzes = async () => {
 	    const fetchedQuizzes = await client.findQuizzesForCourse(cid as string);
 	    console.log("Fetched Quizzes from API:", fetchedQuizzes);
-	    dispatch(setQuizzes(fetchedQuizzes)); // Update the Redux store
+	    dispatch(setQuizzes(fetchedQuizzes));
 	};
     
-	// Fetch data initially
 	useEffect(() => {
 	    if (cid) {
 		fetchQuizzes();

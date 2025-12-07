@@ -1,12 +1,12 @@
 'use client'
-import { redirect, useParams, useRouter } from "next/navigation"; // Import useRouter
+import { redirect, useParams, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { useDispatch} from "react-redux";
 import * as client from "../../../../client";
 import { useEffect, useState } from "react";
 import QuestionRenderer from "./Question";
 import { Button, Form } from "react-bootstrap";
-import { setQuizzes } from "../../reducer"; // Ensure this is the correct path
+import { setQuizzes } from "../../reducer";
 
 export default function QuizAttemptPage() {
     const dispatch = useDispatch();
@@ -25,36 +25,30 @@ export default function QuizAttemptPage() {
         selectedAnswer: answers[questionId]
     }));
 
-    // Select the quizzes from the store safely
+
     const reduxQuizzes = useSelector((state: any) => state.quizzesReducer.quizzes);
 
     const fetchQuizzes = async () => {
         const fetchedQuizzes = await client.findQuizzesForCourse(cid as string);
         console.log("Fetched Quizzes from API:", fetchedQuizzes);
-        dispatch(setQuizzes(fetchedQuizzes)); // Update the Redux store
+        dispatch(setQuizzes(fetchedQuizzes));
     };
 
-    // Fetch data initially
     useEffect(() => {
         if (cid) {
             fetchQuizzes();
         }
     }, [cid]);
 
-    // This effect runs when the Redux store updates (after fetchQuizzes runs)
     useEffect(() => {
         if (reduxQuizzes && qid) {
             const foundQuiz = reduxQuizzes.find((q: any) => q._id === qid);
             if (foundQuiz) {
-                console.log("GOTCHA! Found quiz in Redux store.");
-                setLocalQuiz(foundQuiz); // Store in local state
-                setQuestions(foundQuiz.questions || []); // Store questions for mapping
-            } else {
-                console.log("Fuark! Quiz not found in Redux store.");
-                console.log("Redux Quizzes state:", reduxQuizzes); // Check state content
-            }
+                setLocalQuiz(foundQuiz);
+                setQuestions(foundQuiz.questions || []);
+	    }
         }
-    }, [reduxQuizzes, qid]); // Depend on reduxQuizzes
+    }, [reduxQuizzes, qid]);
 
     const handleAnswerChange = (questionId: string, value: string) => {
         setAnswers(prev => ({
@@ -64,7 +58,6 @@ export default function QuizAttemptPage() {
     };
 
     const handleSubmitAttempt = async () => {
-        // ... (submission logic using localQuiz._id, answers, etc.) ...
         if (isSubmitting || !currentUserId || !qid || !cid) return;
         setIsSubmitting(true);
 
@@ -77,12 +70,10 @@ export default function QuizAttemptPage() {
         }
     };
         
-    // Render loading/not found state
     if (!localQuiz) {
         return <div className="p-4">Loading quiz details...</div>;
     }
 
-    // Render the form using localQuiz and questions state
     return (
         <div className="p-4">
             <h1>{localQuiz.title}</h1>
